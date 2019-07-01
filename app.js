@@ -1,5 +1,6 @@
 // 1. 引入express 模块
 const express = require('express');
+const ejs = require('ejs');
 
 // 引用用户模块
 const router = require('./router')
