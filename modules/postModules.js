@@ -12,11 +12,13 @@ let conn = mysql.createConnection({
 
 module.exports = {
   // 获取文章信息
-  getPostList(callback) {
+  getPostList(params, callback) {
     // 准备sql语句，查找多表数据
     let sql = `SELECT posts.title,posts.feature,posts.created,posts.status,categories.name,users.nickname FROM posts 
     INNER JOIN categories on posts.category_id=categories.id
-    INNER JOIN users on posts.user_id=users.id`
+    INNER JOIN users on posts.user_id=users.id 
+    LIMIT ${ (params.pagenum-1) * params.pagesize },${params.pagesize}
+    `
     // 调用方法
     conn.query(sql, (err, result) => {
       if (err) return callback(err)

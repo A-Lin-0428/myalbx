@@ -1,6 +1,7 @@
 // 1. 引入express 模块
 const express = require('express');
 const ejs = require('ejs');
+const bodyParser = require('body-parser');
 
 // 引用用户模块
 const router = require('./router')
@@ -12,6 +13,11 @@ const app = express();
 app.set('view engine', 'ejs')
 
 app.set('views', 'views')
+
+// 给bodyParser注册中间件
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 
 // 托管静态资源
 app.use('/assets', express.static('assets'))

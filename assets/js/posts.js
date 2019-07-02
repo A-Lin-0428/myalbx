@@ -3,6 +3,10 @@ $(function () {
   $.ajax({
     type: 'get',
     url: '/admin/getPostList',
+    data: {
+      pagenum: 1,
+      pagesize: 3,
+    },
     dataType: 'json',
     success: function (res) {
       // 通过template模板引擎，将数据渲染到页面
