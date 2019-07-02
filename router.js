@@ -6,6 +6,7 @@ const router = express.Router();
 
 // 引用pageController用户模板
 const pageController = require('./controllers/pageController.js');
+const postController = require('./controllers/postController.js');
 
 // 返回前台页面
 router.get('/', pageController.showIndexPage)
@@ -25,7 +26,8 @@ router.get('/', pageController.showIndexPage)
   .get('/admin/slides', pageController.showSlidesPage)
   .get('/admin/users', pageController.showUsersPage)
 
-
+  // 获取所有文章信息
+  .get('/admin/getPostList', postController.getPostList)
 
 
 module.exports = router;
