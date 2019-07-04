@@ -26,7 +26,7 @@
         </select>
         <button class="btn btn-default btn-sm">筛选</button>
       </form>
-      <ul class="pagination pagination-sm pull-right">
+      <ul class="pagination pagination-sm pull-right" style="float:right">
         <li><a href="#">上一页</a></li>
         <li><a href="#">1</a></li>
         <li><a href="#">2</a></li>
@@ -55,11 +55,10 @@
 
 <%- include('./layouts/aside.ejs')%>
 <%- include('./layouts/footer.ejs')%>
-<!-- 引入当前页面的js文件 -->
-<script src="/assets/js/posts.js"></script>
+
 <script src="/assets/vendors/template/template.js"></script>
 <script type="text/template" id="postsListTemp">
-  {{each data}}
+  {{each result}}
   <tr>
     <td class="text-center"><input type="checkbox"></td>
     <td>{{$value.title}}</td>
@@ -80,3 +79,7 @@
   </tr>
   {{/each}}
 </script>
+<!-- 引入分页插件 -->
+<script src="/assets/vendors/bootstrappaginator/bootstrap-paginator.min.js"></script>
+<!-- 引入当前页面的js文件 -->
+<script src="/assets/js/posts.js"></script>

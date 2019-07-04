@@ -22,7 +22,19 @@ module.exports = {
     // 调用方法
     conn.query(sql, (err, result) => {
       if (err) return callback(err)
-      callback(null, result)
+
+      // 再定义一个sql语句，获取表单数量
+      let sql = 'SELECT COUNT(*) pageSum FROM posts'
+      // 再次调用方法
+      conn.query(sql, (err1, datal) => {
+        if (err1) return callback(err1)
+        callback(null, {
+          result: result,
+          total: datal[0].pageSum
+        })
+        // console.log(result);
+      })
+
     })
   }
 }

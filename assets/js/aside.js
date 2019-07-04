@@ -18,8 +18,9 @@ $(function () {
 
   // 2.实现效果：当给确定跳转的标题增加一个类class="active"，用排他思想
   // 第一步：先排除所有
-  $('li').removerClass('active');
+  $('li').removeClass('active');
 
   // 第二步：确定当前
+
   $('#' + routerName).addClass('active');
 })

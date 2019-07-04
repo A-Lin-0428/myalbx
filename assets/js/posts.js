@@ -1,17 +1,51 @@
 $(function () {
+  // 定义页码变量
+  var pagenum = 1;
+  //  定义每一页的数据量
+  var pagesize = 2;
+
+
+  init();
   // 效果，发送ajax请求，把文章数据渲染到posts页面上
-  $.ajax({
-    type: 'get',
-    url: '/admin/getPostList',
-    data: {
-      pagenum: 1,
-      pagesize: 3,
-    },
-    dataType: 'json',
-    success: function (res) {
-      // 通过template模板引擎，将数据渲染到页面
-      var htmlStr = template('postsListTemp', res)
-      $('tbody').html(htmlStr)
-    }
-  })
+  function init() {
+    $.ajax({
+      type: 'get',
+      url: '/admin/getPostList',
+      data: {
+        pagenum: pagenum,
+        pagesize: pagesize,
+      },
+      dataType: 'json',
+      success: function (res) {
+        // 通过template模板引擎，将数据渲染到页面
+        var htmlStr = template('postsListTemp', res.data)
+        // console.log(res)
+        $('tbody').html(htmlStr)
+        //生成分页结构
+        setPage(Math.ceil(res.data.total / pagesize))
+      }
+    })
+  }
+
+
+  // 效果：利用bootstrappaginator插件，设计分页效果
+  function setPage(count) {
+    $(".pagination").bootstrapPaginator({
+      //设置版本号
+      bootstrapMajorVersion: 3,
+      // 显示第几页
+      currentPage: pagenum,
+      // 总页数
+      totalPages: count,
+      //当单击操作按钮的时候, 执行该函数, 调用ajax渲染页面
+      onPageClicked: function (event, originalEvent, type, page) {
+        // 把当前点击的页码赋值给currentPage, 调用ajax,渲染页面
+        pagenum = page
+
+        // 重新获取数据
+        init()
+      }
+    })
+  }
+
 })
