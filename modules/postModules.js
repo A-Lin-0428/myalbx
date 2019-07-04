@@ -16,7 +16,7 @@ module.exports = {
   // { pagenum: '1', pagesize: '2', cate: '1', status: 'published' }
   getPostList(params, callback) {
     // 准备sql语句，查找多表数据
-    let sql = `SELECT posts.title,posts.feature,posts.created,posts.status,categories.name,users.nickname FROM posts 
+    let sql = `SELECT posts.id pid,posts.title,posts.feature,posts.created,posts.status,categories.name,users.nickname,users.id uid FROM posts 
     INNER JOIN categories on posts.category_id=categories.id
     INNER JOIN users on posts.user_id=users.id
     where 1=1 `
@@ -49,6 +49,15 @@ module.exports = {
         // console.log(result);
       })
 
+    })
+  },
+  detelePostById(id, callback) {
+    //  准备sql语句
+    let sql = 'DELETE FROM posts WHERE id =' + id
+    // 调用方法
+    conn.query(sql, (err, result) => {
+      if (err) return callback(err)
+      callback(null)
     })
   }
 }

@@ -85,6 +85,23 @@ $(function () {
     })
   })();
 
+  // 效果：实现点击删除按钮，根据id删除文章数据
+  // 采用事件委托的办法
+  $('tbody').on('click', '.del_post', function () {
+    //获取id
+    var id = $(this).attr("data_id")
+    $.ajax({
+      type: 'get',
+      url: '/deletePostById',
+      data: {
+        id: id
+      },
+      dataType: 'json',
+      success: function (res) {
+
+      }
+    })
+  })
 
 
 })

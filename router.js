@@ -29,6 +29,12 @@ router.get('/', pageController.showIndexPage)
 
   // 获取所有文章信息
   .get('/admin/getPostList', postController.getPostList)
+  //  根据删除文章数据
+  .get('/deletePostById', postController.detelePostById)
+
+
+
+
 
   // 获取分类数据
   .get('/admin/getCateList', cateController.getCateList)
