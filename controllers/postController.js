@@ -9,7 +9,7 @@ module.exports = {
     // console.log(obj);
     //  调用PostModules方法
     postController.getPostList(obj, (err, data) => {
-      console.log(err);
+      // console.log(err);
       if (err) res.json({
         'code': 1,
         'msg': '获取所有文章失败'

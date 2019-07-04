@@ -7,6 +7,7 @@ const router = express.Router();
 // 引用pageController用户模板
 const pageController = require('./controllers/pageController.js');
 const postController = require('./controllers/postController.js');
+const cateController = require('./controllers/cateController.js');
 
 // 返回前台页面
 router.get('/', pageController.showIndexPage)
@@ -28,6 +29,9 @@ router.get('/', pageController.showIndexPage)
 
   // 获取所有文章信息
   .get('/admin/getPostList', postController.getPostList)
+
+  // 获取分类数据
+  .get('/admin/getCateList', cateController.getCateList)
 
 
 module.exports = router;

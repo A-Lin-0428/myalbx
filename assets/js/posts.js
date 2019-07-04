@@ -48,4 +48,20 @@ $(function () {
     })
   }
 
+  // 效果：将分类信息渲染到下拉菜单中
+  $.ajax({
+    type: 'get',
+    url: '/admin/getCateList',
+    dataType: 'json',
+    success: function (res) {
+      // 先定义一个字符串
+      var htmlStr = '<option value="all">所有分类</option>'
+      // 将数据拼接到字符串中
+      for (var i = 0; i < res.data.length; i++) {
+        htmlStr += `<option value="${res.data[i].id}">${res.data[i].name}</option>`
+      }
+      // 把数据渲染到页面中
+      $('.cate_list').html(htmlStr)
+    }
+  })
 })
