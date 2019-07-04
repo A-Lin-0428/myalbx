@@ -12,13 +12,27 @@ let conn = mysql.createConnection({
 
 module.exports = {
   // 获取文章信息
+  // 现在的params是一个对象，一共有四个属性
+  // { pagenum: '1', pagesize: '2', cate: '1', status: 'published' }
   getPostList(params, callback) {
     // 准备sql语句，查找多表数据
     let sql = `SELECT posts.title,posts.feature,posts.created,posts.status,categories.name,users.nickname FROM posts 
     INNER JOIN categories on posts.category_id=categories.id
-    INNER JOIN users on posts.user_id=users.id 
-    LIMIT ${ (params.pagenum-1) * params.pagesize },${params.pagesize}
-    `
+    INNER JOIN users on posts.user_id=users.id
+    where 1=1 `
+    // 在这里可以根据结构拼接筛选条件
+    if (params.cate) {
+      //拼接分类条件
+      sql += ` and posts.category_id=${params.cate}`
+    }
+    if (params.status) {
+      //拼接状态条件
+      sql += ` posts.user_status=${params.status}`
+    }
+
+    sql += ` order by posts.id desc
+    LIMIT ${ (params.pagenum-1) * params.pagesize },${params.pagesize}`
+
     // 调用方法
     conn.query(sql, (err, result) => {
       if (err) return callback(err)

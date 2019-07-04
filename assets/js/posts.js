@@ -4,16 +4,34 @@ $(function () {
   //  定义每一页的数据量
   var pagesize = 2;
 
+  // 效果：实现用户数据的筛选
+  $('.btn-search').on('click', function (event) {
+    //  阻止submit按钮的默认行为
+    event.preventDefault()
+    // 获取两个筛选信息
+    query = {}
+    //  判断用户有没有选择指定的筛选条件
+    if ($('.cate_list').val() != 'all') {
+      query.cate = $('.cate_list').val();
+    }
+    if ($('.statu_list').val() != 'all') {
+      query.statu = $('.statu_list').val();
+    }
+    // 发起请求
+    init(query)
+  });
 
-  init();
+  init({});
   // 效果，发送ajax请求，把文章数据渲染到posts页面上
-  function init() {
+  function init(query) {
     $.ajax({
       type: 'get',
       url: '/admin/getPostList',
       data: {
         pagenum: pagenum,
         pagesize: pagesize,
+        cate: query.cate,
+        statu: query.statu
       },
       dataType: 'json',
       success: function (res) {
@@ -43,25 +61,30 @@ $(function () {
         pagenum = page
 
         // 重新获取数据
-        init()
+        init({})
       }
     })
-  }
+  };
 
-  // 效果：将分类信息渲染到下拉菜单中
-  $.ajax({
-    type: 'get',
-    url: '/admin/getCateList',
-    dataType: 'json',
-    success: function (res) {
-      // 先定义一个字符串
-      var htmlStr = '<option value="all">所有分类</option>'
-      // 将数据拼接到字符串中
-      for (var i = 0; i < res.data.length; i++) {
-        htmlStr += `<option value="${res.data[i].id}">${res.data[i].name}</option>`
+  // 效果：将分类信息渲染到下拉菜单中,自调用函数，来实现加载
+  (function () {
+    $.ajax({
+      type: 'get',
+      url: '/admin/getCateList',
+      dataType: 'json',
+      success: function (res) {
+        // 先定义一个字符串
+        var htmlStr = '<option value="all">所有分类</option>'
+        // 将数据拼接到字符串中
+        for (var i = 0; i < res.data.length; i++) {
+          htmlStr += `<option value="${res.data[i].id}">${res.data[i].name}</option>`
+        }
+        // 把数据渲染到页面中
+        $('.cate_list').html(htmlStr)
       }
-      // 把数据渲染到页面中
-      $('.cate_list').html(htmlStr)
-    }
-  })
+    })
+  })();
+
+
+
 })
