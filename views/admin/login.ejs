@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8">
   <title>Sign in &laquo; Admin</title>
   <link rel="stylesheet" href="../assets/vendors/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../assets/vendors/nprogress/nprogress.css">
   <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
+
 <body>
   <div class="login">
     <form class="login-wrap">
@@ -22,8 +25,12 @@
         <label for="password" class="sr-only">密码</label>
         <input id="password" type="password" class="form-control" placeholder="密码">
       </div>
-      <a class="btn btn-primary btn-block" href="index.html">登 录</a>
+      <a class="btn btn-primary btn-block" id="btnLogin" href="/">登 录</a>
     </form>
   </div>
 </body>
+<script src="/assets/vendors/nprogress/nprogress.js"></script>
+<script src="/assets/vendors/jquery/jquery.js"></script>
+<script src="/assets/js/login.js"></script>
+
 </html>

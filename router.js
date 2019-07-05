@@ -10,6 +10,7 @@ const postController = require('./controllers/postController.js');
 const cateController = require('./controllers/cateController.js');
 const addPostController = require('./controllers/addPostController.js');
 const uploadFileController = require('./controllers/uploadFileController.js');
+const usersController = require('./controllers/usersController.js');
 
 // 返回前台页面
 router.get('/', pageController.showIndexPage)
@@ -46,5 +47,9 @@ router.get('/', pageController.showIndexPage)
 
   // 获取添加文章
   .post('/addPost', addPostController.addPost)
+
+  // 获取用户登录信息
+  .post('/login', usersController.loginInfo)
+
 
 module.exports = router;
