@@ -49,5 +49,15 @@ module.exports = {
       if (err) return callback(err)
       callback(null)
     })
+  },
+  // 增加文章
+  addPost(post, callback) {
+    // 准备sql语句
+    let sql = `insert into posts set ?`
+    // 调用方法
+    conn.query(sql, [post], (err) => {
+      if (err) callback(err)
+      callback(null)
+    })
   }
 }

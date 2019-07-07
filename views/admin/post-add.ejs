@@ -11,6 +11,7 @@
         <strong>错误！</strong>发生XXX错误
       </div> -->
     <form class="row">
+      <input type="hidden" name="feature" id="feature">
       <div class="col-md-9">
         <div class="form-group">
           <label for="title">标题</label>
@@ -29,14 +30,14 @@
           <p class="help-block">https://zce.me/post/<strong>slug</strong></p>
         </div>
         <div class="form-group">
-          <label for="feature">特色图像</label>
+          <label for="fileimg">特色图像</label>
           <!-- show when image chose -->
           <img class="help-block thumbnail" style="display: none">
-          <input id="feature" class="form-control" name="feature" type="file">
+          <input id="fileimg" class="form-control" name="fileimg" type="file">
         </div>
         <div class="form-group">
           <label for="category">所属分类</label>
-          <select id="category" class="form-control" name="category">
+          <select id="category_id" class="form-control" name="category_id">
             <option value="1">未分类</option>
             <option value="2">潮生活</option>
           </select>

@@ -36,5 +36,25 @@ module.exports = {
         'msg': '删除文章成功',
       })
     })
+  },
+
+  // 添加文章
+  addPost(req, res) {
+    let post = {
+      views: 0,
+      likes: 0,
+      user_id: req.session.currentUser.id,
+      ...req.body
+    }
+    postModules.addPost(post, err => {
+      if (err) res.json({
+        code: 1,
+        msg: '增加文章失败'
+      })
+      res.json({
+        code: 0,
+        msg: '增加文章成功'
+      })
+    })
   }
 }

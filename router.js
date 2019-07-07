@@ -8,7 +8,6 @@ const router = express.Router();
 const pageController = require('./controllers/pageController.js');
 const postController = require('./controllers/postController.js');
 const cateController = require('./controllers/cateController.js');
-const addPostController = require('./controllers/addPostController.js');
 const uploadFileController = require('./controllers/uploadFileController.js');
 const usersController = require('./controllers/usersController.js');
 
@@ -46,7 +45,7 @@ router.get('/', pageController.showIndexPage)
   .post('/uploadFile', uploadFileController.uploadFile)
 
   // 获取添加文章
-  .post('/addPost', addPostController.addPost)
+  .post('/addPost', postController.addPost)
 
   // 获取用户登录信息
   .post('/login', usersController.loginInfo)
