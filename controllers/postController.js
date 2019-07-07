@@ -6,7 +6,6 @@ module.exports = {
   getPostList(req, res) {
     //先接收get请求发送过来的数据
     let obj = req.query;
-    console.log(obj);
     //  调用PostModules方法
     postModules.getPostList(obj, (err, data) => {
       // console.log(err);

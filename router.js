@@ -19,7 +19,7 @@ router.get('/', pageController.showIndexPage)
   // 返回后台页面 ，默认前面加admin
   .get('/admin/categories', pageController.showCategoriesPage)
   .get('/admin/comments', pageController.showMommentsPage)
-  .get('/admin', pageController.showIndexPage)
+  .get('/admin', pageController.showAdminIndexPage)
   .get('/admin/login', pageController.showLoginPage)
   .get('/admin/nav-menus', pageController.showNavMenusPage)
   .get('/admin/password-reset', pageController.showPasswordResetPage)

@@ -18,7 +18,7 @@ module.exports = {
   showMommentsPage(req, res) {
     res.render('admin/comments.ejs')
   },
-  showIndexPage(req, res) {
+  showAdminIndexPage(req, res) {
     res.render('admin/index.ejs')
   },
   showLoginPage(req, res) {

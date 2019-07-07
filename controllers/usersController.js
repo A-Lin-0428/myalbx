@@ -16,10 +16,12 @@ module.exports = {
       } else {
         if (data) {
           if (data.password == obj.password) {
-            res.json({
+            req.session.islogin = true
+            req.session.currentUser = data
+            res.end(JSON.stringify({
               code: 0,
               msg: '登录成功'
-            })
+            }))
           } else {
             res.json({
               code: 1,
